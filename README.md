@@ -1,11 +1,11 @@
 # WordCountAutoTest
 A tool for personal-project testing
 
-说明：
+### 说明：
 1. 此代码修改于北航助教老师提供的 autotestscripts.zip ，主要针对本次作业实际需求，做出适应测试需要的修改，仅了使用原程序的部分功能
 2. 由于本人代码不精，直接将本次的个人需求卸载源程序中，他人使用时也需适应性修改，故未封装程序
 
-测试需要：
+### 测试需要：
 1. 所有同学均fork源仓库，最终代码通过pr提交
 2. 源仓库规范目录为：\
 　　Cplusplus\
@@ -19,13 +19,13 @@ A tool for personal-project testing
 　　　　　　|- WordCount.vcxproj\ 
 3. 自动化测试对象为C++编写的程序，并输出得分、运行时间与错误原因
 
-程序思路：
+### 程序思路：
 1. 下载github源项目仓库到 /downloads
 2. 搜索学生目录，将源代码程序所在目录输出到 gen.txt
 3. 批量编译源程序
 4. 批量测试并输出结果
 
-使用操作：
+### 使用操作：
 1. 配置 gen.bat 文件
    - 修改 call "D:\0_System\Visual_Studio\vs_community\VC\Auxiliary\Build\vcvarsall.bat" x86
      为 本地VS相应 vcvarsall.bat 文件位置
@@ -49,11 +49,11 @@ A tool for personal-project testing
 8. 执行命令行参数 -m test : 批量运行每个学生的可运行程序，自动对比输出结果与标准答案的差异，得出评分，并在工程目录下生成scores.csv
 9. 可用excel打开.csv文件，查看测试运行结果
 
-制表输出的错误提示
+### 制表输出的错误提示
 1. TLE : 运行超时，默认为5s
 2. No result.txt : 没有输出 result.txt 结果文件
 3. Lack exe : 编译失败，没有生成.exe
 4. Failed : 命令行运行失败
 5. Other error : 其他错误
 
-End
+#### End
