@@ -27,18 +27,18 @@ A tool for personal-project testing
 
 ### 使用操作：
 1. 配置 gen.bat 文件
-   - 修改 call "D:\0_System\Visual_Studio\vs_community\VC\Auxiliary\Build\vcvarsall.bat" x86
+   * 修改 call "D:\0_System\Visual_Studio\vs_community\VC\Auxiliary\Build\vcvarsall.bat" x86
      为 本地VS相应 vcvarsall.bat 文件位置
-   - 修改 d:
+   * 修改 d:
      为 本地该程序所在盘符
 2. 修改 源程序
-   - src\AutoTest\wordcount\Main.java：115  
+   * src\AutoTest\wordcount\Main.java：115  
      studentId = vals[2]; //获取学生的学号
      // 根据clone到本地的目录修改vals[x]，我的仓库目录是downloads\Cplusplus\031502530，所以x=2
-   - src\AutoTest\wordcount\GitRepoHanlder.java：101  
+   * src\AutoTest\wordcount\GitRepoHanlder.java：70
      int status = gitRepoCloner.cloneRepository("https://github.com/FZU1816K/personal-project", "./downloads/", "0"); //下载项目，返回相应的状态到status
-     // 根据需要clone的仓库地址修改url，我的源仓库地址是"https://github.com/FZU1816K/personal-project"
-   - src\AutoTest\wordcount\GitRepoHanlder.java：114
+     // 根据需要clone的仓库地址修改url
+   * src\AutoTest\wordcount\GitRepoHanlder.java：83
      String mainFolder = "D:/0_System/Eclipse/workplace/WordCountAutoTest/downloads/Cplusplus";
      // 修改为学生文件夹所在目录
 3. 如有 测试用例变更、分数映射修改 必要，代码位置在 src\AutoTest\wordcount\WordCountTester.java （内部注释很详细，已优化得分制表部分代码）
