@@ -7,16 +7,16 @@ A tool for personal-project testing
 
 测试需要：
 1. 所有同学均fork源仓库，最终代码通过pr提交
-2. 源仓库规范目录为：[图片]
-   Cplusplus
-     |- xxxxxxxxx (文件夹名字为学号)
-       |- src
-          |- WordCount.sln
-          |- WordCount
-            |- stdafx.cpp
-            |- stdafx.h
-            |- WordCount.cpp
-            |- WordCount.vcxproj
+2. 源仓库规范目录为：\
+　　Cplusplus\
+　　　|- xxxxxxxxx (文件夹名字为学号)\
+　　　　|- src\
+　　　　　|- WordCount.sln\
+　　　　　|- WordCount\
+　　　　　　|- stdafx.cpp\
+　　　　　　|- stdafx.h\
+　　　　　　|- WordCount.cpp\
+　　　　　　|- WordCount.vcxproj\ 
 3. 自动化测试对象为C++编写的程序，并输出得分、运行时间与错误原因
 
 程序思路：
