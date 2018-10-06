@@ -1,6 +1,6 @@
 @echo off
 set now=%cd%
-call "D:\0_System\Visual_Studio\vs_community\VC\Auxiliary\Build\vcvarsall.bat" x86
+call "D:\0_System\Visual_Studio\vs_community\VC\Auxiliary\Build\vcvarsall.bat" x64
 ::echo on 
 d: 
 for /f "delims=" %%a in (gen.txt) do (
