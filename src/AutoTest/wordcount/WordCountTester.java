@@ -47,20 +47,45 @@ public class WordCountTester {
         Runtime run = Runtime.getRuntime();//返回与当前 Java 应用程序相关的运行时对象  
         try {
 			File f = new File("result.txt");
+//			File directory = new File("");//设定为当前文件夹 
+//			System.out.println(f.getAbsolutePath());//获取绝对路径 
 
         	System.out.println("Begin test: " + argument);
 			long endTime = 0;
         	long startTime = System.currentTimeMillis();//获取开始时间
-        	
-			Process p = run.exec(baseDir + "/wc.exe "+ argument); //cmd // 启动另一个进程来执行命令
+
+			//Process p = run.exec(baseDir + "/wc.exe "+ argument); //cmd // 启动另一个进程来执行命令
+        	Process p = run.exec("java -jar " + baseDir + "/wc.jar " + baseDir + "/" + argument); //cmd // 启动另一个进程来执行命令
 			if (p.waitFor(timeLimit, TimeUnit.SECONDS)) { //等待子进程结束
 				endTime = System.currentTimeMillis(); //获取结束时间
 				System.out.println("程序运行时间： " + (1.0*endTime - 1.0*startTime)/1000 + "s");
+				//TimeUnit.MINUTES.sleep(1);//分
 			}else {
 				//timeout - kill the process.
 				p.destroy(); // consider using destroyForcibly instead
 				System.out.println("TLE") ;
+				
+				if (f.exists()) {
+					System.gc();
+					f.delete();
+				}
+				
 				return -1; //"TLE"
+			}
+			
+			//临时调上来的代码，验证java程序是否执行成功
+			//检查命令是否执行失败。
+			if (p.waitFor() != 0) {
+				if (p.exitValue() == 1) {//p.exitValue()==0表示正常结束，1：非正常结束
+					System.err.println("命令执行失败!");
+				}
+
+				if (f.exists()) {
+					System.gc();
+					f.delete();
+				}
+				
+				return -6; //"Fail"
 			}
 			
 			//判断是否产生输出文件result.txt
@@ -73,14 +98,20 @@ public class WordCountTester {
 			File dst = new File("logs/"+studentId+"/result"+String.valueOf(testId)+".txt");
 			Files.copy(f.toPath(), dst.toPath(), StandardCopyOption.REPLACE_EXISTING);
 			
-			//可以省略吧
-			//检查命令是否执行失败。
-			if (p.waitFor() != 0) {
-				if (p.exitValue() == 1) {//p.exitValue()==0表示正常结束，1：非正常结束
-					System.err.println("命令执行失败!");
-				}
-				return -6; //"Fail"
-			}
+//			//可以省略吧
+//			//检查命令是否执行失败。
+//			if (p.waitFor() != 0) {
+//				if (p.exitValue() == 1) {//p.exitValue()==0表示正常结束，1：非正常结束
+//					System.err.println("命令执行失败!");
+//				}
+//
+//				if (f.exists()) {
+//					System.gc();
+//					f.delete();
+//				}
+//				
+//				return -6; //"Fail"
+//			}
 
 			//与正确答案对比，评估得分
 			int scorePerTest = checkValid(stdTxt, "result.txt");
@@ -106,7 +137,8 @@ public class WordCountTester {
 		double totScore = 0; //初始化总分
 		ans.add("\t"+WordCountTester.studentId); //插入学号
 
-		File fExe = new File(baseDir+"/wc.exe");
+		//File fExe = new File(baseDir+"/wc.exe");
+		File fExe = new File(baseDir+"/wc.jar");
 //		System.out.println(studentId+" exe filePath: "+fExe.getAbsolutePath());
 
 		//判断是否存在可运行程序.exe
@@ -161,6 +193,7 @@ public class WordCountTester {
 				totScore = totScore + (scores.get(i)/2.0);
 			}
 		}
+		ans.add(String.valueOf(totScore));
 		System.out.println(" 映射总分：" + totScore);
 		
 		return ans;
